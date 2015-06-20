@@ -2,6 +2,9 @@ package com.eboodnero.crosstime;
 
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 
@@ -16,6 +21,9 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
     Toolbar toolbar;
     FragmentManager fragmentManager;
     Button addButton;
+    SimpleCursorAdapter cursorAdapter;
+    Cursor cursor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +34,24 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
         WorkoutFragment workoutFragment = new WorkoutFragment();
         getFragmentManager().beginTransaction().add(R.id.fragment_view, workoutFragment).commit();
 
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        RoundsDbHelper dbHelper = new RoundsDbHelper(getApplicationContext());
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+
+        String[] fromColumns = {RoundsDbHelper.WorkoutEntry._ID, RoundsDbHelper.WorkoutEntry.HOURS, RoundsDbHelper.WorkoutEntry.MINUTES, RoundsDbHelper.WorkoutEntry.SECONDS};
+        int[] toViews = {R.id.round_number, R.id.hour_text_view, R.id.minute_text_view, R.id.second_text_view};
+
+        cursor = database.query(RoundsDbHelper.WorkoutEntry.TABLE_NAME,fromColumns, null,null,null,null,null);
+
+        cursorAdapter = new SimpleCursorAdapter(this, R.layout.rounds_item_layout, cursor, fromColumns, toViews, 0);
+        ListView listView = (ListView) findViewById(R.id.rounds_list_view);
+        listView.setAdapter(cursorAdapter);
     }
 
     @Override
@@ -65,7 +91,17 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
         timeInput.show(fragmentManager, "timeInput");
     }
     public void saveTimeInput(String[] input){
-        Toast.makeText(this, input[0] + " " + input[1] + " " + input[2], Toast.LENGTH_SHORT).show();
+        RoundsDbHelper dbHelper = new RoundsDbHelper(getApplicationContext());
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(RoundsDbHelper.WorkoutEntry.TYPE, "round");
+        values.put(RoundsDbHelper.WorkoutEntry.HOURS, input[0]);
+        values.put(RoundsDbHelper.WorkoutEntry.MINUTES, input[1]);
+        values.put(RoundsDbHelper.WorkoutEntry.SECONDS, input[2]);
+        long newRowId;
+        newRowId = database.insert(RoundsDbHelper.WorkoutEntry.TABLE_NAME, null, values);
+        Toast.makeText(this, String.valueOf(newRowId), Toast.LENGTH_SHORT).show();
+        onResume();
     }
 
 }

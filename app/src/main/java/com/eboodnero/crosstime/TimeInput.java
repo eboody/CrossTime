@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -56,15 +55,15 @@ public class TimeInput extends DialogFragment {
 
         upHourIncrement = (Button) parentView.findViewById(R.id.up_hour_increment);
         downHourIncrement = (Button) parentView.findViewById(R.id.down_hour_increment);
-        hourView = (EditText) parentView.findViewById(R.id.hour_text_view);
+        hourView = (EditText) parentView.findViewById(R.id.hour_edit_view);
 
         upMinuteIncrement = (Button) parentView.findViewById(R.id.up_minute_increment);
         downMinuteIncrement = (Button) parentView.findViewById(R.id.down_minute_increment);
-        minuteView = (EditText) parentView.findViewById(R.id.minute_text_view);
+        minuteView = (EditText) parentView.findViewById(R.id.minute_edit_view);
 
         upSecondIncrement = (Button) parentView.findViewById(R.id.up_second_increment);
         downSecondIncrement = (Button) parentView.findViewById(R.id.down_second_increment);
-        secondView = (EditText) parentView.findViewById(R.id.second_text_view);
+        secondView = (EditText) parentView.findViewById(R.id.second_edit_view);
 
 
         setSaveButtonListener(saveButton);
