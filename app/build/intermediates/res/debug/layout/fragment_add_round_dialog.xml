@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    tools:context="com.eboodnero.crosstime.AddRoundDialog"
+    android:layout_margin="25dp">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:id="@+id/add_round_button"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/round_button"
+        android:text="Round"
+        android:textColor="@color/textIconColor"
+        android:layout_margin="10dp"
+        />
+
+    <Button
+        android:id="@+id/add_rest_button"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/primaryColor"
+        android:text="Rest"
+        android:textColor="@color/textIconColor"
+        android:layout_margin="10dp"
+        />
+
+</LinearLayout>
+<!-- From: file:/home/eran/Copy/code/Android/Android%20Studio%20Projects/CrossTime/app/src/main/res/layout/fragment_add_round_dialog.xml -->
