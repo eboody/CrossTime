@@ -1536,8 +1536,11 @@ containing a value of this type.
         public static final int ic_action_right=0x7f02003d;
         public static final int ic_action_trash=0x7f02003e;
         public static final int ic_action_up=0x7f02003f;
-        public static final int notification_template_icon_bg=0x7f020041;
-        public static final int round_button=0x7f020040;
+        public static final int ic_add_button=0x7f020040;
+        public static final int ic_add_rest=0x7f020041;
+        public static final int ic_add_round=0x7f020042;
+        public static final int notification_template_icon_bg=0x7f020044;
+        public static final int round_button=0x7f020043;
     }
     public static final class id {
         public static final int action0=0x7f0c0063;
@@ -1696,7 +1699,7 @@ containing a value of this type.
         public static final int activity_main=0x7f040019;
         public static final int fragment_add_round_dialog=0x7f04001a;
         public static final int fragment_time_input=0x7f04001b;
-        public static final int fragment_workout_entry=0x7f04001c;
+        public static final int fragment_workout=0x7f04001c;
         public static final int notification_media_action=0x7f04001d;
         public static final int notification_media_cancel_action=0x7f04001e;
         public static final int notification_template_big_media=0x7f04001f;

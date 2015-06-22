@@ -421,8 +421,11 @@ int drawable ic_action_left 0x7f02003c
 int drawable ic_action_right 0x7f02003d
 int drawable ic_action_trash 0x7f02003e
 int drawable ic_action_up 0x7f02003f
-int drawable notification_template_icon_bg 0x7f020041
-int drawable round_button 0x7f020040
+int drawable ic_add_button 0x7f020040
+int drawable ic_add_rest 0x7f020041
+int drawable ic_add_round 0x7f020042
+int drawable notification_template_icon_bg 0x7f020044
+int drawable round_button 0x7f020043
 int id action0 0x7f0c0063
 int id action_bar 0x7f0c0040
 int id action_bar_activity_content 0x7f0c0000
@@ -575,7 +578,7 @@ int layout abc_simple_dropdown_hint 0x7f040018
 int layout activity_main 0x7f040019
 int layout fragment_add_round_dialog 0x7f04001a
 int layout fragment_time_input 0x7f04001b
-int layout fragment_workout_entry 0x7f04001c
+int layout fragment_workout 0x7f04001c
 int layout notification_media_action 0x7f04001d
 int layout notification_media_cancel_action 0x7f04001e
 int layout notification_template_big_media 0x7f04001f
