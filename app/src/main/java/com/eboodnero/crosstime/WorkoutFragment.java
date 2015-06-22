@@ -30,7 +30,7 @@ public class WorkoutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        parentView = inflater.inflate(R.layout.fragment_workout_entry, container, false);
+        parentView = inflater.inflate(R.layout.fragment_workout, container, false);
 
         addButton = (Button) parentView.findViewById(R.id.add_button);
 

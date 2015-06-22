@@ -12,8 +12,8 @@
         android:id="@+id/add_round_button"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/round_button"
-        android:text="Round"
+        android:background="@drawable/ic_add_round"
+
         android:textColor="@color/textIconColor"
         android:layout_margin="10dp"
         />
@@ -22,9 +22,9 @@
         android:id="@+id/add_rest_button"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/round_button"
-        android:backgroundTint="@color/primaryColor"
-        android:text="Rest"
+        android:background="@drawable/ic_add_rest"
+
+
         android:textColor="@color/textIconColor"
         android:layout_margin="10dp"
         />

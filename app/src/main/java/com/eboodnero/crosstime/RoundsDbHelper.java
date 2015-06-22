@@ -9,6 +9,7 @@ import android.provider.BaseColumns;
  * Created by eran on 6/20/15.
  */
 public class RoundsDbHelper extends SQLiteOpenHelper {
+    SQLiteDatabase database;
 
     public static abstract class WorkoutEntry implements BaseColumns {
         public static final String TABLE_NAME = "workout";
@@ -43,6 +44,7 @@ public class RoundsDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
+        database = db;
     }
 
     @Override
@@ -51,6 +53,9 @@ public class RoundsDbHelper extends SQLiteOpenHelper {
         // to simply to discard the data and start over
         db.execSQL(SQL_DELETE_ENTRIES);
         onCreate(db);
+    }
+    public void delete(int id){
+        database.delete(WorkoutEntry.TABLE_NAME, "_ID='" + id + "'", null);
     }
 }
 
