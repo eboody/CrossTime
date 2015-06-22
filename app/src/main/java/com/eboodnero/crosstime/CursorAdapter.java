@@ -21,7 +21,7 @@ import java.util.zip.Inflater;
 /**
  * Created by eran on 6/20/15.
  */
-public class CursorAdapter extends SimpleCursorAdapter{
+public class CursorAdapter extends SimpleCursorAdapter {
     Button trashButton;
     TextView id;
     Context context;
@@ -42,16 +42,27 @@ public class CursorAdapter extends SimpleCursorAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            convertView = inflater.inflate(R.layout.rounds_item_layout,
-                    null);
+            convertView = layoutInflater.inflate(R.layout.rounds_item_layout, null);
         }
+        View row = convertView;
+        cursor.moveToPosition(position);
+
+
         id = (TextView) convertView.findViewById(R.id.round_number);
         id.setText(cursor.getString(cursor.getColumnIndex(RoundsDbHelper.WorkoutEntry._ID)));
 
         trashButton = (Button) convertView.findViewById(R.id.trash_button);
+        trashButton.setClickable(true);
+        trashButton.setFocusable(true);
+
         trashButton.setTag(id.getText().toString());
-        return convertView;
+        trashButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, trashButton.getTag().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        return row;
     }
 
     @Override

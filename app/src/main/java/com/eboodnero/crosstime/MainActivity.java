@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
         String[] fromColumns = {RoundsDbHelper.WorkoutEntry._ID, RoundsDbHelper.WorkoutEntry.HOURS, RoundsDbHelper.WorkoutEntry.MINUTES, RoundsDbHelper.WorkoutEntry.SECONDS};
         int[] toViews = {R.id.round_number, R.id.hour_text_view, R.id.minute_text_view, R.id.second_text_view};
 
-        cursor = db.query(RoundsDbHelper.WorkoutEntry.TABLE_NAME, fromColumns, null, null, null, null, null);
+        //cursor = db.query(RoundsDbHelper.WorkoutEntry.TABLE_NAME, fromColumns, null, null, null, null, null);
+        cursor = db.query(RoundsDbHelper.WorkoutEntry.TABLE_NAME, fromColumns, RoundsDbHelper.WorkoutEntry.INACTIVE + "=?",  new String[]{"0"}, null, null, null);
 
         cursorAdapter = new CursorAdapter(this, R.layout.rounds_item_layout, cursor, fromColumns, toViews, 0);
         final ListView listView = (ListView) findViewById(R.id.rounds_list_view);
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
         values.put(RoundsDbHelper.WorkoutEntry.HOURS, input[0]);
         values.put(RoundsDbHelper.WorkoutEntry.MINUTES, input[1]);
         values.put(RoundsDbHelper.WorkoutEntry.SECONDS, input[2]);
+        values.put(RoundsDbHelper.WorkoutEntry.INACTIVE, input[3]);
         long newRowId;
         newRowId = database.insert(RoundsDbHelper.WorkoutEntry.TABLE_NAME, null, values);
 

@@ -118,7 +118,7 @@ public class TimeInput extends DialogFragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] input = {hourView.getText().toString(), minuteView.getText().toString(), secondView.getText().toString()};
+                String[] input = {hourView.getText().toString(), minuteView.getText().toString(), secondView.getText().toString(), "0"};
                 MainActivity mainActivity = (MainActivity) getActivity();
                 mainActivity.saveTimeInput(input);
                 dismiss();

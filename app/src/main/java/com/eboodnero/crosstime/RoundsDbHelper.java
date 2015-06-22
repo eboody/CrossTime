@@ -17,6 +17,7 @@ public class RoundsDbHelper extends SQLiteOpenHelper {
         public static final String MINUTES = "minutes";
         public static final String SECONDS = "seconds";
         public static final String TYPE = "type";
+        public static final String INACTIVE = "inactive";
     }
 
     private static final String TEXT_TYPE = " TEXT";
@@ -27,7 +28,8 @@ public class RoundsDbHelper extends SQLiteOpenHelper {
                     WorkoutEntry.TYPE + TEXT_TYPE + COMMA_SEP +
                     WorkoutEntry.HOURS + TEXT_TYPE + COMMA_SEP +
                     WorkoutEntry.MINUTES + TEXT_TYPE + COMMA_SEP +
-                    WorkoutEntry.SECONDS + TEXT_TYPE +
+                    WorkoutEntry.SECONDS + TEXT_TYPE + COMMA_SEP +
+                    WorkoutEntry.INACTIVE + TEXT_TYPE +
                     " )";
 
     private static final String SQL_DELETE_ENTRIES =

@@ -426,10 +426,7 @@ int drawable ic_add_rest 0x7f020041
 int drawable ic_add_round 0x7f020042
 int drawable notification_template_icon_bg 0x7f020044
 int drawable round_button 0x7f020043
-<<<<<<< Updated upstream
-=======
 int id _ID 0x7f0c0071
->>>>>>> Stashed changes
 int id action0 0x7f0c0063
 int id action_bar 0x7f0c0040
 int id action_bar_activity_content 0x7f0c0000
