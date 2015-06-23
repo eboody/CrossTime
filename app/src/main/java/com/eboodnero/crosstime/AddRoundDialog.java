@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 
@@ -138,4 +140,11 @@ public class AddRoundDialog extends DialogFragment {
         public void onFragmentInteraction(Uri uri);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        final Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.come_from_bottom);
+        addRestButton.startAnimation(animation);
+        addRoundButton.startAnimation(animation);
+    }
 }

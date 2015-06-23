@@ -13,7 +13,7 @@
         android:text="Round"
         android:layout_marginBottom="0dp"
         android:paddingTop="4dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         />
     <ImageView
         android:id="@+id/left_border"
@@ -24,7 +24,16 @@
         android:layout_alignParentStart="false"
         android:paddingTop="80dp"
         />
-
+    <ImageView
+        android:id="@+id/rest_image"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:background="@drawable/rest"
+        />
     <TextView
         android:id="@+id/round_number"
         android:layout_width="wrap_content"
@@ -36,6 +45,7 @@
         android:textColor="@color/secondaryText"
         android:layout_toRightOf="@+id/left_border"
         android:paddingTop="10dp"
+        android:layout_marginLeft="10dp"
         />
 
     <LinearLayout
@@ -43,16 +53,16 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/round_number"
         android:orientation="horizontal"
-        android:paddingTop="10dp"
+
         android:paddingLeft="25dp"
+        android:layout_centerVertical="true"
         >
 
         <TextView
             android:id="@+id/hour_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/round_number"
-            android:text="00"
+            android:layout_toRightOf="@+id/rest_image"
             android:textSize="@dimen/big_font" />
 
         <TextView

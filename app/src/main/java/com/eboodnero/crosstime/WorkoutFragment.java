@@ -4,15 +4,15 @@ package com.eboodnero.crosstime;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
-import android.app.ListFragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -44,7 +44,13 @@ public class WorkoutFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         listView = (ListView) getView().findViewById(R.id.rounds_list_view);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(context, String.valueOf(position), Toast.LENGTH_SHORT).show();
 
+            }
+        });
 
     }
 
@@ -62,6 +68,7 @@ public class WorkoutFragment extends Fragment {
             }
         });
 
+
         return parentView;
     }
 
@@ -77,6 +84,8 @@ public class WorkoutFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        final Animation translate = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_from_side);
+        addButton.startAnimation(translate);
         updateList();
     }
     public void updateList(){

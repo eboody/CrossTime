@@ -8,6 +8,10 @@ int anim abc_slide_in_bottom 0x7f050006
 int anim abc_slide_in_top 0x7f050007
 int anim abc_slide_out_bottom 0x7f050008
 int anim abc_slide_out_top 0x7f050009
+int anim come_from_bottom 0x7f05000a
+int anim come_from_side 0x7f05000b
+int anim scale 0x7f05000c
+int anim scale_from_side 0x7f05000d
 int attr actionBarDivider 0x7f010064
 int attr actionBarItemBackground 0x7f010065
 int attr actionBarPopupTheme 0x7f01005e
@@ -448,7 +452,7 @@ int id action_menu_presenter 0x7f0c0003
 int id action_mode_bar 0x7f0c003d
 int id action_mode_bar_stub 0x7f0c003c
 int id action_mode_close_button 0x7f0c0025
-int id action_settings 0x7f0c007d
+int id action_settings 0x7f0c007e
 int id activity_chooser_view_content 0x7f0c0026
 int id add_button 0x7f0c0065
 int id add_rest_button 0x7f0c0054
@@ -463,8 +467,8 @@ int id cancel_action 0x7f0c0067
 int id checkbox 0x7f0c0038
 int id chronometer 0x7f0c006d
 int id collapseActionView 0x7f0c0017
-int id colon1 0x7f0c0078
-int id colon2 0x7f0c007a
+int id colon1 0x7f0c0079
+int id colon2 0x7f0c007b
 int id contentPanel 0x7f0c0031
 int id custom 0x7f0c0035
 int id customPanel 0x7f0c0034
@@ -485,7 +489,7 @@ int id fragment_view 0x7f0c0050
 int id home 0x7f0c0004
 int id homeAsUp 0x7f0c000d
 int id hour_edit_view 0x7f0c0059
-int id hour_text_view 0x7f0c0077
+int id hour_text_view 0x7f0c0078
 int id icon 0x7f0c002b
 int id ifRoom 0x7f0c0018
 int id image 0x7f0c0028
@@ -503,7 +507,7 @@ int id list_item_parent_layout 0x7f0c0073
 int id media_actions 0x7f0c0069
 int id middle 0x7f0c0015
 int id minute_edit_view 0x7f0c005d
-int id minute_text_view 0x7f0c0079
+int id minute_text_view 0x7f0c007a
 int id multiply 0x7f0c001e
 int id never 0x7f0c0019
 int id none 0x7f0c000e
@@ -512,8 +516,9 @@ int id parentPanel 0x7f0c002d
 int id progress_circular 0x7f0c0005
 int id progress_horizontal 0x7f0c0006
 int id radio 0x7f0c003a
+int id rest_image 0x7f0c0076
 int id round_label 0x7f0c0074
-int id round_number 0x7f0c0076
+int id round_number 0x7f0c0077
 int id rounds_list_view 0x7f0c0064
 int id save_button 0x7f0c0063
 int id screen 0x7f0c001f
@@ -529,7 +534,7 @@ int id search_plate 0x7f0c0048
 int id search_src_text 0x7f0c0049
 int id search_voice_btn 0x7f0c004d
 int id second_edit_view 0x7f0c0061
-int id second_text_view 0x7f0c007b
+int id second_text_view 0x7f0c007c
 int id select_dialog_listview 0x7f0c004e
 int id shortcut 0x7f0c0039
 int id showCustom 0x7f0c000f
@@ -551,7 +556,7 @@ int id title 0x7f0c002c
 int id title_template 0x7f0c002f
 int id tool_bar 0x7f0c004f
 int id topPanel 0x7f0c002e
-int id trash_button 0x7f0c007c
+int id trash_button 0x7f0c007d
 int id up 0x7f0c0008
 int id up_hour_increment 0x7f0c0058
 int id up_minute_increment 0x7f0c005c

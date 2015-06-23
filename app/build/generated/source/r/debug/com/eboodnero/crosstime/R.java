@@ -19,6 +19,10 @@ public final class R {
         public static final int abc_slide_in_top=0x7f050007;
         public static final int abc_slide_out_bottom=0x7f050008;
         public static final int abc_slide_out_top=0x7f050009;
+        public static final int come_from_bottom=0x7f05000a;
+        public static final int come_from_side=0x7f05000b;
+        public static final int scale=0x7f05000c;
+        public static final int scale_from_side=0x7f05000d;
     }
     public static final class attr {
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -1565,7 +1569,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0c003d;
         public static final int action_mode_bar_stub=0x7f0c003c;
         public static final int action_mode_close_button=0x7f0c0025;
-        public static final int action_settings=0x7f0c007d;
+        public static final int action_settings=0x7f0c007e;
         public static final int activity_chooser_view_content=0x7f0c0026;
         public static final int add_button=0x7f0c0065;
         public static final int add_rest_button=0x7f0c0054;
@@ -1580,8 +1584,8 @@ containing a value of this type.
         public static final int checkbox=0x7f0c0038;
         public static final int chronometer=0x7f0c006d;
         public static final int collapseActionView=0x7f0c0017;
-        public static final int colon1=0x7f0c0078;
-        public static final int colon2=0x7f0c007a;
+        public static final int colon1=0x7f0c0079;
+        public static final int colon2=0x7f0c007b;
         public static final int contentPanel=0x7f0c0031;
         public static final int custom=0x7f0c0035;
         public static final int customPanel=0x7f0c0034;
@@ -1602,7 +1606,7 @@ containing a value of this type.
         public static final int home=0x7f0c0004;
         public static final int homeAsUp=0x7f0c000d;
         public static final int hour_edit_view=0x7f0c0059;
-        public static final int hour_text_view=0x7f0c0077;
+        public static final int hour_text_view=0x7f0c0078;
         public static final int icon=0x7f0c002b;
         public static final int ifRoom=0x7f0c0018;
         public static final int image=0x7f0c0028;
@@ -1620,7 +1624,7 @@ containing a value of this type.
         public static final int media_actions=0x7f0c0069;
         public static final int middle=0x7f0c0015;
         public static final int minute_edit_view=0x7f0c005d;
-        public static final int minute_text_view=0x7f0c0079;
+        public static final int minute_text_view=0x7f0c007a;
         public static final int multiply=0x7f0c001e;
         public static final int never=0x7f0c0019;
         public static final int none=0x7f0c000e;
@@ -1629,8 +1633,9 @@ containing a value of this type.
         public static final int progress_circular=0x7f0c0005;
         public static final int progress_horizontal=0x7f0c0006;
         public static final int radio=0x7f0c003a;
+        public static final int rest_image=0x7f0c0076;
         public static final int round_label=0x7f0c0074;
-        public static final int round_number=0x7f0c0076;
+        public static final int round_number=0x7f0c0077;
         public static final int rounds_list_view=0x7f0c0064;
         public static final int save_button=0x7f0c0063;
         public static final int screen=0x7f0c001f;
@@ -1646,7 +1651,7 @@ containing a value of this type.
         public static final int search_src_text=0x7f0c0049;
         public static final int search_voice_btn=0x7f0c004d;
         public static final int second_edit_view=0x7f0c0061;
-        public static final int second_text_view=0x7f0c007b;
+        public static final int second_text_view=0x7f0c007c;
         public static final int select_dialog_listview=0x7f0c004e;
         public static final int shortcut=0x7f0c0039;
         public static final int showCustom=0x7f0c000f;
@@ -1668,7 +1673,7 @@ containing a value of this type.
         public static final int title_template=0x7f0c002f;
         public static final int tool_bar=0x7f0c004f;
         public static final int topPanel=0x7f0c002e;
-        public static final int trash_button=0x7f0c007c;
+        public static final int trash_button=0x7f0c007d;
         public static final int up=0x7f0c0008;
         public static final int up_hour_increment=0x7f0c0058;
         public static final int up_minute_increment=0x7f0c005c;

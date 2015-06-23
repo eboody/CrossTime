@@ -3,10 +3,13 @@ package com.eboodnero.crosstime;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +36,7 @@ public class CustomArrayAdapter extends android.widget.ArrayAdapter<String> {
         public TextView minuteView;
         public TextView secondView;
         public ImageView border;
+        public ImageView restImage;
     }
 
     public CustomArrayAdapter(Context context,
@@ -55,6 +59,7 @@ public class CustomArrayAdapter extends android.widget.ArrayAdapter<String> {
         inflater = LayoutInflater.from(context);
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View rowView = convertView;
@@ -66,6 +71,7 @@ public class CustomArrayAdapter extends android.widget.ArrayAdapter<String> {
             viewHolder.minuteView = (TextView) rowView.findViewById(R.id.minute_text_view);
             viewHolder.secondView = (TextView) rowView.findViewById(R.id.second_text_view);
             viewHolder.border = (ImageView) rowView.findViewById(R.id.left_border);
+            viewHolder.restImage = (ImageView) rowView.findViewById(R.id.rest_image);
             rowView.setTag(viewHolder);
         }
         ViewHolder holder = (ViewHolder) rowView.getTag();
@@ -96,10 +102,11 @@ public class CustomArrayAdapter extends android.widget.ArrayAdapter<String> {
         }
         else {
             holder.border.setBackgroundResource(R.color.restBlue);
-            holder.roundView.setText("Rest");
+            holder.roundView.setVisibility(View.INVISIBLE);
+            holder.restImage.setVisibility(View.VISIBLE);
+
             rowView.findViewById(R.id.round_label).setVisibility(View.INVISIBLE);
         }
-
         return rowView;
     }
 

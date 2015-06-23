@@ -250,7 +250,7 @@
     <string name="status_bar_notification_info_overflow">999+</string>
     <!-- From: file:/home/eran/Copy/code/Android/Android%20Studio%20Projects/CrossTime/app/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Cross Time</string>
     <!-- From: file:/home/eran/Copy/code/Android/Android%20Studio%20Projects/CrossTime/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>

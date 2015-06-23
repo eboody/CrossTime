@@ -48,6 +48,33 @@ public class TimeInput extends DialogFragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //if adding a new round, set the text for the edittext views to be the previous entered round time
+        //otherwise do the same for the last entered rest time
+        if(MainActivity.roundButtonPressedBuffer){
+            for(int i = MainActivity.isRoundList.size() - 1; i >= 0; i--){
+                if(MainActivity.isRoundList.get(i) == true){
+                    hourView.setText(MainActivity.hoursList.get(i));
+                    minuteView.setText(MainActivity.minutesList.get(i));
+                    secondView.setText(MainActivity.secondsList.get(i));
+                    break;
+                }
+            }
+        }
+        else {
+            for(int i = MainActivity.isRoundList.size() - 1; i >= 0; i--){
+                if(MainActivity.isRoundList.get(i) == false){
+                    hourView.setText(MainActivity.hoursList.get(i));
+                    minuteView.setText(MainActivity.minutesList.get(i));
+                    secondView.setText(MainActivity.secondsList.get(i));
+                    break;
+                }
+            }
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
