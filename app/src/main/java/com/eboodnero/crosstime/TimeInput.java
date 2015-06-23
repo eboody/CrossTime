@@ -2,6 +2,7 @@ package com.eboodnero.crosstime;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -11,6 +12,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 /**
@@ -36,6 +40,7 @@ public class TimeInput extends DialogFragment {
     Button downSecondIncrement;
 
     Button saveButton;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -114,17 +119,22 @@ public class TimeInput extends DialogFragment {
         public void onFragmentInteraction(Uri uri);
     }
 
+
+
     private void setSaveButtonListener(Button saveButton){
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] input = {hourView.getText().toString(), minuteView.getText().toString(), secondView.getText().toString(), "0"};
+                MainActivity.hoursList.add(hourView.getText().toString());
+                MainActivity.minutesList.add(minuteView.getText().toString());
+                MainActivity.secondsList.add(secondView.getText().toString());
                 MainActivity mainActivity = (MainActivity) getActivity();
-                mainActivity.saveTimeInput(input);
+                mainActivity.onSaveTimeInput();
                 dismiss();
             }
         });
     }
+
 
     private void setHourListeners(Button upHourIncrement, final EditText hourView, Button downHourIncrement) {
         upHourIncrement.setOnClickListener(new View.OnClickListener() {

@@ -1,6 +1,7 @@
 package com.eboodnero.crosstime;
 
 import android.app.DialogFragment;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -19,14 +20,18 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity implements AddRoundDialog.OnFragmentInteractionListener, TimeInput.OnFragmentInteractionListener {
     Toolbar toolbar;
     FragmentManager fragmentManager;
-    Button addButton;
-    CursorAdapter cursorAdapter;
-    Cursor cursor;
-    SQLiteDatabase db;
+    static List<String> hoursList;
+    static List<String> minutesList;
+    static List<String> secondsList;
+    CustomArrayAdapter customArrayAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,10 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+
+        hoursList = new ArrayList<>();
+        minutesList = new ArrayList<>();
+        secondsList = new ArrayList<>();
 
         WorkoutFragment workoutFragment = new WorkoutFragment();
         getFragmentManager().beginTransaction().add(R.id.fragment_view, workoutFragment).commit();
@@ -44,19 +53,6 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
     @Override
     protected void onResume() {
         super.onResume();
-        RoundsDbHelper dbHelper = new RoundsDbHelper(getApplicationContext());
-        db = dbHelper.getWritableDatabase();
-
-        String[] fromColumns = {RoundsDbHelper.WorkoutEntry._ID, RoundsDbHelper.WorkoutEntry.HOURS, RoundsDbHelper.WorkoutEntry.MINUTES, RoundsDbHelper.WorkoutEntry.SECONDS};
-        int[] toViews = {R.id.round_number, R.id.hour_text_view, R.id.minute_text_view, R.id.second_text_view};
-
-        //cursor = db.query(RoundsDbHelper.WorkoutEntry.TABLE_NAME, fromColumns, null, null, null, null, null);
-        cursor = db.query(RoundsDbHelper.WorkoutEntry.TABLE_NAME, fromColumns, RoundsDbHelper.WorkoutEntry.INACTIVE + "=?",  new String[]{"0"}, null, null, null);
-
-        cursorAdapter = new CursorAdapter(this, R.layout.rounds_item_layout, cursor, fromColumns, toViews, 0);
-        final ListView listView = (ListView) findViewById(R.id.rounds_list_view);
-        listView.setAdapter(cursorAdapter);
-
     }
 
     @Override
@@ -90,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
         fragmentManager = getFragmentManager();
         DialogFragment timeInput = new TimeInput();
         timeInput.show(fragmentManager, "timeInput");
+
     }
 
     public void addRestPressed() {
@@ -98,22 +95,10 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
         timeInput.show(fragmentManager, "timeInput");
     }
 
-    public void saveTimeInput(String[] input) {
-        RoundsDbHelper dbHelper = new RoundsDbHelper(getApplicationContext());
-        SQLiteDatabase database = dbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(RoundsDbHelper.WorkoutEntry.TYPE, "round");
-        values.put(RoundsDbHelper.WorkoutEntry.HOURS, input[0]);
-        values.put(RoundsDbHelper.WorkoutEntry.MINUTES, input[1]);
-        values.put(RoundsDbHelper.WorkoutEntry.SECONDS, input[2]);
-        values.put(RoundsDbHelper.WorkoutEntry.INACTIVE, input[3]);
-        long newRowId;
-        newRowId = database.insert(RoundsDbHelper.WorkoutEntry.TABLE_NAME, null, values);
-
-        onResume();
-    }
-    public void delete(int id){
-        db.delete(RoundsDbHelper.WorkoutEntry.TABLE_NAME, "_ID='" + id + "'", null);
+    public void onSaveTimeInput(){
+        fragmentManager = getFragmentManager();
+        WorkoutFragment workOutFragment = (WorkoutFragment) fragmentManager.findFragmentById(R.id.fragment_view);
+        workOutFragment.updateList();
     }
 
 }
