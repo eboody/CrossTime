@@ -37,7 +37,6 @@ public class CustomArrayAdapter extends android.widget.ArrayAdapter<String> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View rowView = convertView;
-        Toast.makeText(context, "here", Toast.LENGTH_SHORT).show();
         if (rowView == null){
             rowView = inflater.inflate(R.layout.rounds_item_layout, null);
             ViewHolder viewHolder = new ViewHolder();

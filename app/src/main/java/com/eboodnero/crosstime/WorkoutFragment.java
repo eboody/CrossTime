@@ -78,6 +78,7 @@ public class WorkoutFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        updateList();
     }
     public void updateList(){
         arrayAdapter = new CustomArrayAdapter(context, R.layout.rounds_item_layout, MainActivity.hoursList, MainActivity.minutesList, MainActivity.secondsList);

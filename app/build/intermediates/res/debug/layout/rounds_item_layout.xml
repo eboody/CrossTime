@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="15dp"
     android:id="@+id/list_item_parent_layout"
     android:background="#fff">
-    <TextView
-        android:id="@+id/_ID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/round_number"
@@ -19,7 +15,7 @@
         android:paddingRight="30dp"
         android:paddingTop="8dp"
         android:text="#"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="@dimen/big_font"
         android:textColor="@color/secondaryText" />
 
     <LinearLayout
@@ -27,7 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/round_number"
         android:orientation="horizontal"
-        android:paddingTop="12dp"
+        android:paddingTop="8dp"
+        android:paddingLeft="25dp"
         >
 
         <TextView
@@ -36,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/round_number"
             android:text="00"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textSize="@dimen/big_font" />
 
         <TextView
             android:id="@+id/colon1"
@@ -44,14 +41,14 @@
             android:layout_height="wrap_content"
 
             android:text=":"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textSize="@dimen/big_font" />
 
         <TextView
             android:id="@+id/minute_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textSize="@dimen/big_font" />
 
         <TextView
             android:id="@+id/colon2"
@@ -59,14 +56,14 @@
             android:layout_height="wrap_content"
 
             android:text=":"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textSize="@dimen/big_font"/>
 
         <TextView
             android:id="@+id/second_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textSize="@dimen/big_font" />
     </LinearLayout>
 
 
@@ -78,6 +75,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/ic_action_trash"
-        android:gravity="right" />
+        android:gravity="right"
+        android:visibility="gone"/>
 
 </RelativeLayout><!-- From: file:/home/eran/Copy/code/Android/Android%20Studio%20Projects/CrossTime/app/src/main/res/layout/rounds_item_layout.xml -->
