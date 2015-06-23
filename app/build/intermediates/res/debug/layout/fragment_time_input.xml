@@ -10,10 +10,37 @@
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
-        android:id="@+id/linear_layout_parent"
+        android:id="@+id/labels_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hours"
+            android:layout_weight="1"
+            android:layout_marginLeft="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Minutes"
+            android:layout_weight="1"
+            android:layout_marginLeft="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seconds"
+            android:layout_weight="1"
+            android:layout_marginLeft="30dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/time_input_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/labels_linear_layout">
 
         <LinearLayout
             android:id="@+id/linear_layout_hour"
@@ -111,7 +138,7 @@
         android:id="@+id/save_button"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_below="@+id/linear_layout_parent"
+        android:layout_below="@+id/time_input_linear_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:background="@drawable/round_button"

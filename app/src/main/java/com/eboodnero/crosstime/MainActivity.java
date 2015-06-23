@@ -31,7 +31,10 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
     static List<String> hoursList;
     static List<String> minutesList;
     static List<String> secondsList;
-    CustomArrayAdapter customArrayAdapter;
+    static List<Boolean> isRoundList;
+    static List<Integer> roundNumberList;
+    static int roundBuffer;
+    static boolean roundButtonPressedBuffer;
 
 
     @Override
@@ -44,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
         hoursList = new ArrayList<>();
         minutesList = new ArrayList<>();
         secondsList = new ArrayList<>();
+        isRoundList = new ArrayList<>();
+        roundNumberList = new ArrayList<>();
 
         WorkoutFragment workoutFragment = new WorkoutFragment();
         getFragmentManager().beginTransaction().add(R.id.fragment_view, workoutFragment).commit();
@@ -83,19 +88,21 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
         fragmentManager = getFragmentManager();
         DialogFragment timeInput = new TimeInput();
         timeInput.show(fragmentManager, "timeInput");
-
+        roundButtonPressedBuffer = true;
     }
 
     public void addRestPressed() {
         fragmentManager = getFragmentManager();
         DialogFragment timeInput = new TimeInput();
         timeInput.show(fragmentManager, "timeInput");
+        roundButtonPressedBuffer = false;
     }
 
     public void onSaveTimeInput(){
         fragmentManager = getFragmentManager();
         WorkoutFragment workOutFragment = (WorkoutFragment) fragmentManager.findFragmentById(R.id.fragment_view);
         workOutFragment.updateList();
+
     }
 
 }

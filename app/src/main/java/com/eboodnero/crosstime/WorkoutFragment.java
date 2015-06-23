@@ -28,7 +28,6 @@ public class WorkoutFragment extends Fragment {
     Context context;
     ListView listView;
     static CustomArrayAdapter arrayAdapter;
-    String[] dummy;
 
     public WorkoutFragment() {
         // Required empty public constructor
@@ -81,7 +80,13 @@ public class WorkoutFragment extends Fragment {
         updateList();
     }
     public void updateList(){
-        arrayAdapter = new CustomArrayAdapter(context, R.layout.rounds_item_layout, MainActivity.hoursList, MainActivity.minutesList, MainActivity.secondsList);
+        arrayAdapter = new CustomArrayAdapter(context,
+                R.layout.rounds_item_layout,
+                MainActivity.hoursList,
+                MainActivity.minutesList,
+                MainActivity.secondsList,
+                MainActivity.isRoundList,
+                MainActivity.roundNumberList);
         listView.setAdapter(arrayAdapter);
     }
 }

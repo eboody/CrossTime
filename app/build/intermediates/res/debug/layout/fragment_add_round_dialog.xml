@@ -1,33 +1,56 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     tools:context="com.eboodnero.crosstime.AddRoundDialog"
     android:layout_margin="25dp">
 
     <!-- TODO: Update blank fragment layout -->
 
+    <TextView
+        android:id="@+id/add_round_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/secondaryText"
+        android:textSize="18sp"
+        android:text="Add Round"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="16dp"
+        />
+    <TextView
+        android:id="@+id/add_rest_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/secondaryText"
+        android:textSize="18sp"
+        android:text="Add Rest"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/add_round_text"
+        android:layout_marginLeft="8dp"
+        />
+
+
     <Button
         android:id="@+id/add_round_button"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/ic_add_round"
-
+        android:background="@drawable/round"
         android:textColor="@color/textIconColor"
         android:layout_margin="10dp"
+        android:layout_below="@+id/add_round_text"
         />
 
     <Button
         android:id="@+id/add_rest_button"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/ic_add_rest"
-
-
+        android:background="@drawable/rest"
         android:textColor="@color/textIconColor"
         android:layout_margin="10dp"
+        android:layout_toRightOf="@+id/add_round_button"
+        android:layout_below="@+id/add_rest_text"
         />
 
-</LinearLayout>
+</RelativeLayout>
 <!-- From: file:/home/eran/Copy/code/Android/Android%20Studio%20Projects/CrossTime/app/src/main/res/layout/fragment_add_round_dialog.xml -->

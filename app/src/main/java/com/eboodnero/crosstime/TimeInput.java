@@ -130,6 +130,24 @@ public class TimeInput extends DialogFragment {
                 MainActivity.secondsList.add(secondView.getText().toString());
                 MainActivity mainActivity = (MainActivity) getActivity();
                 mainActivity.onSaveTimeInput();
+
+                //update arrays according to which button was pressed
+                if(MainActivity.roundButtonPressedBuffer == false){
+                    MainActivity.isRoundList.add(false);
+                    MainActivity.roundNumberList.add(0);
+                }
+                else {
+                    MainActivity.isRoundList.add(true);
+                    if(MainActivity.roundNumberList.size() > 0){
+                        MainActivity.roundBuffer = MainActivity.roundNumberList.get(0);
+                        for(int i = 0; i < MainActivity.roundNumberList.size(); ++i){
+                            if (MainActivity.roundBuffer < MainActivity.roundNumberList.get(i)){
+                                MainActivity.roundBuffer = MainActivity.roundNumberList.get(i);
+                            }
+                        }
+                    }
+                    MainActivity.roundNumberList.add(++MainActivity.roundBuffer);
+                }
                 dismiss();
             }
         });

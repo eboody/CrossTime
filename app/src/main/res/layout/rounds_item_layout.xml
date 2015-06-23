@@ -2,10 +2,28 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="15dp"
+    android:layout_height="65dp"
     android:id="@+id/list_item_parent_layout"
-    android:background="#fff">
+    android:background="#fff"
+    >
+    <TextView
+        android:id="@+id/round_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Round"
+        android:layout_marginBottom="0dp"
+        android:paddingTop="4dp"
+        android:layout_marginLeft="10dp"
+        />
+    <ImageView
+        android:id="@+id/left_border"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="#e74c3c"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:paddingTop="80dp"
+        />
 
     <TextView
         android:id="@+id/round_number"
@@ -13,17 +31,19 @@
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
         android:paddingRight="30dp"
-        android:paddingTop="8dp"
         android:text="#"
         android:textSize="@dimen/big_font"
-        android:textColor="@color/secondaryText" />
+        android:textColor="@color/secondaryText"
+        android:layout_toRightOf="@+id/left_border"
+        android:paddingTop="10dp"
+        />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/round_number"
         android:orientation="horizontal"
-        android:paddingTop="8dp"
+        android:paddingTop="10dp"
         android:paddingLeft="25dp"
         >
 

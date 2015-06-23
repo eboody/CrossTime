@@ -80,10 +80,16 @@
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
+    <!-- From: file:/home/eran/Copy/code/Android/Android%20Studio%20Projects/CrossTime/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="restBlue">#2980b9</color>
+    <!-- From: file:/home/eran/Copy/code/Android/Android%20Studio%20Projects/CrossTime/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <eat-comment/>
     <color name="ripple_material_dark">#4dffffff</color>
     <color name="ripple_material_light">#1f000000</color>
     <!-- From: file:/home/eran/Copy/code/Android/Android%20Studio%20Projects/CrossTime/app/src/main/res/values/colors.xml -->
     <eat-comment/>
+    <color name="roundRed">#e74c3c</color>
     <color name="secondaryText">#727272</color>
     <!-- From: file:/home/eran/Copy/code/Android/Android%20Studio%20Projects/CrossTime/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
