@@ -143,8 +143,9 @@ public class AddRoundDialog extends DialogFragment {
     @Override
     public void onResume() {
         super.onResume();
-        final Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.come_from_bottom);
-        addRestButton.startAnimation(animation);
-        addRoundButton.startAnimation(animation);
+        final Animation right = AnimationUtils.loadAnimation(getActivity(), R.anim.come_from_right);
+        final Animation left = AnimationUtils.loadAnimation(getActivity(), R.anim.come_from_left);
+        addRestButton.startAnimation(right);
+        addRoundButton.startAnimation(left);
     }
 }

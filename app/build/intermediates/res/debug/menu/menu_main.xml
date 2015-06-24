@@ -2,7 +2,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.eboodnero.crosstime.MainActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/save_menu_item"
+        android:title="Ready!"
+        app:showAsAction="always"/>
 </menu>
 <!-- From: file:/home/eran/Copy/code/Android/Android%20Studio%20Projects/CrossTime/app/src/main/res/menu/menu_main.xml -->

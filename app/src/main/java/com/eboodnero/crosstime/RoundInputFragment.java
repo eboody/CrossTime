@@ -21,7 +21,7 @@ import android.widget.Toast;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WorkoutFragment extends Fragment {
+public class RoundInputFragment extends Fragment {
     View parentView;
     FragmentManager fragmentManager;
     Button addButton;
@@ -29,7 +29,7 @@ public class WorkoutFragment extends Fragment {
     ListView listView;
     static CustomArrayAdapter arrayAdapter;
 
-    public WorkoutFragment() {
+    public RoundInputFragment() {
         // Required empty public constructor
     }
 
@@ -58,12 +58,14 @@ public class WorkoutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        parentView = inflater.inflate(R.layout.fragment_workout, container, false);
+        parentView = inflater.inflate(R.layout.fragment_round_input, container, false);
 
         addButton = (Button) parentView.findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Animation scale = AnimationUtils.loadAnimation(context, R.anim.scale);
+                addButton.startAnimation(scale);
                 showAddRoundDialog();
             }
         });

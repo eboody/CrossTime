@@ -2,19 +2,21 @@ package com.eboodnero.crosstime;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import java.util.ArrayList;
+import android.widget.TextView;
 
 
 /**
@@ -40,6 +42,8 @@ public class TimeInput extends DialogFragment {
     Button downSecondIncrement;
 
     Button saveButton;
+    Animation rotateRight;
+    Animation rotateLeft;
 
 
     private OnFragmentInteractionListener mListener;
@@ -54,19 +58,18 @@ public class TimeInput extends DialogFragment {
 
         //if adding a new round, set the text for the edittext views to be the previous entered round time
         //otherwise do the same for the last entered rest time
-        if(MainActivity.roundButtonPressedBuffer){
-            for(int i = MainActivity.isRoundList.size() - 1; i >= 0; i--){
-                if(MainActivity.isRoundList.get(i) == true){
+        if (MainActivity.roundButtonPressedBuffer) {
+            for (int i = MainActivity.isRoundList.size() - 1; i >= 0; i--) {
+                if (MainActivity.isRoundList.get(i) == true) {
                     hourView.setText(MainActivity.hoursList.get(i));
                     minuteView.setText(MainActivity.minutesList.get(i));
                     secondView.setText(MainActivity.secondsList.get(i));
                     break;
                 }
             }
-        }
-        else {
-            for(int i = MainActivity.isRoundList.size() - 1; i >= 0; i--){
-                if(MainActivity.isRoundList.get(i) == false){
+        } else {
+            for (int i = MainActivity.isRoundList.size() - 1; i >= 0; i--) {
+                if (MainActivity.isRoundList.get(i) == false) {
                     hourView.setText(MainActivity.hoursList.get(i));
                     minuteView.setText(MainActivity.minutesList.get(i));
                     secondView.setText(MainActivity.secondsList.get(i));
@@ -96,6 +99,16 @@ public class TimeInput extends DialogFragment {
         upSecondIncrement = (Button) parentView.findViewById(R.id.up_second_increment);
         downSecondIncrement = (Button) parentView.findViewById(R.id.down_second_increment);
         secondView = (EditText) parentView.findViewById(R.id.second_edit_view);
+
+        final Animation bottom = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.come_from_bottom);
+        saveButton.startAnimation(bottom);
+
+        hourView.setBackgroundColor(Color.TRANSPARENT);
+        minuteView.setBackgroundColor(Color.TRANSPARENT);
+        secondView.setBackgroundColor(Color.TRANSPARENT);
+
+        rotateRight = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_right);
+        rotateLeft = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_left);
 
 
         setSaveButtonListener(saveButton);
@@ -147,8 +160,7 @@ public class TimeInput extends DialogFragment {
     }
 
 
-
-    private void setSaveButtonListener(Button saveButton){
+    private void setSaveButtonListener(Button saveButton) {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,16 +171,15 @@ public class TimeInput extends DialogFragment {
                 mainActivity.onSaveTimeInput();
 
                 //update arrays according to which button was pressed
-                if(MainActivity.roundButtonPressedBuffer == false){
+                if (MainActivity.roundButtonPressedBuffer == false) {
                     MainActivity.isRoundList.add(false);
                     MainActivity.roundNumberList.add(0);
-                }
-                else {
+                } else {
                     MainActivity.isRoundList.add(true);
-                    if(MainActivity.roundNumberList.size() > 0){
+                    if (MainActivity.roundNumberList.size() > 0) {
                         MainActivity.roundBuffer = MainActivity.roundNumberList.get(0);
-                        for(int i = 0; i < MainActivity.roundNumberList.size(); ++i){
-                            if (MainActivity.roundBuffer < MainActivity.roundNumberList.get(i)){
+                        for (int i = 0; i < MainActivity.roundNumberList.size(); ++i) {
+                            if (MainActivity.roundBuffer < MainActivity.roundNumberList.get(i)) {
                                 MainActivity.roundBuffer = MainActivity.roundNumberList.get(i);
                             }
                         }
@@ -185,8 +196,10 @@ public class TimeInput extends DialogFragment {
         upHourIncrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 int hour = Integer.valueOf(hourView.getText().toString()) + 1;
                 hourView.setText("" + hour);
+                hourView.startAnimation(rotateRight);
             }
         });
         downHourIncrement.setOnClickListener(new View.OnClickListener() {
@@ -194,23 +207,7 @@ public class TimeInput extends DialogFragment {
             public void onClick(View v) {
                 int hour = Integer.valueOf(hourView.getText().toString()) - 1;
                 if (hour + 1 > 0) hourView.setText("" + hour);
-            }
-        });
-    }
-
-    private void setSecondListeners(Button upSecondIncrement, final EditText secondView, Button downSecondIncrement) {
-        upSecondIncrement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int second = Integer.valueOf(secondView.getText().toString()) + 1;
-                secondView.setText("" + second);
-            }
-        });
-        downSecondIncrement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int second = Integer.valueOf(secondView.getText().toString()) - 1;
-                if (second + 1 > 0) secondView.setText("" + second);
+                hourView.startAnimation(rotateLeft);
             }
         });
     }
@@ -221,6 +218,7 @@ public class TimeInput extends DialogFragment {
             public void onClick(View v) {
                 int minute = Integer.valueOf(minuteView.getText().toString()) + 1;
                 minuteView.setText("" + minute);
+                minuteView.startAnimation(rotateLeft);
             }
         });
         downMinuteIncrement.setOnClickListener(new View.OnClickListener() {
@@ -228,6 +226,26 @@ public class TimeInput extends DialogFragment {
             public void onClick(View v) {
                 int minute = Integer.valueOf(minuteView.getText().toString()) - 1;
                 if (minute + 1 > 0) minuteView.setText("" + minute);
+                minuteView.startAnimation(rotateRight);
+            }
+        });
+    }
+
+    private void setSecondListeners(Button upSecondIncrement, final EditText secondView, Button downSecondIncrement) {
+        upSecondIncrement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int second = Integer.valueOf(secondView.getText().toString()) + 1;
+                secondView.setText("" + second);
+                secondView.startAnimation(rotateLeft);
+            }
+        });
+        downSecondIncrement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int second = Integer.valueOf(secondView.getText().toString()) - 1;
+                if (second + 1 > 0) secondView.setText("" + second);
+                secondView.startAnimation(rotateRight);
             }
         });
     }

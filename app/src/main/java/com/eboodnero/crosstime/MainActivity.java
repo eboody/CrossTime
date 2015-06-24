@@ -1,28 +1,16 @@
 package com.eboodnero.crosstime;
 
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.res.Resources;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +19,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements AddRoundDialog.OnFragmentInteractionListener, TimeInput.OnFragmentInteractionListener {
     Toolbar toolbar;
     FragmentManager fragmentManager;
+    RoundInputFragment roundInputFragment;
     static List<String> hoursList;
     static List<String> minutesList;
     static List<String> secondsList;
@@ -38,7 +27,8 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
     static List<Integer> roundNumberList;
     static int roundBuffer;
     static boolean roundButtonPressedBuffer;
-    static CustomArrayAdapter customArrayAdapter;
+
+    static int[] roundsTimeToMilliSecondsArray;
 
 
     @Override
@@ -54,8 +44,8 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
         isRoundList = new ArrayList<>();
         roundNumberList = new ArrayList<>();
 
-        WorkoutFragment workoutFragment = new WorkoutFragment();
-        getFragmentManager().beginTransaction().add(R.id.fragment_view, workoutFragment).commit();
+        roundInputFragment = new RoundInputFragment();
+        getFragmentManager().beginTransaction().add(R.id.fragment_view, roundInputFragment).commit();
 
 
     }
@@ -79,7 +69,10 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
         if (id == R.id.action_settings) {
             return true;
         }
-
+        if(id == R.id.save_menu_item){
+            startTimer();
+            item.setVisible(false);
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -104,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
 
     public void onSaveTimeInput(){
         fragmentManager = getFragmentManager();
-        WorkoutFragment workOutFragment = (WorkoutFragment) fragmentManager.findFragmentById(R.id.fragment_view);
+        RoundInputFragment workOutFragment = (RoundInputFragment) fragmentManager.findFragmentById(R.id.fragment_view);
         workOutFragment.updateList();
 
     }
@@ -120,5 +113,15 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float dp = px / (metrics.densityDpi / 160f);
         return dp;
+    }
+
+    public void startTimer(){
+        roundsTimeToMilliSecondsArray = new int[isRoundList.size()];
+        for (int i = 0; i < isRoundList.size(); i++){
+            roundsTimeToMilliSecondsArray[i] = (Integer.valueOf(hoursList.get(i)) * 3600000) + (Integer.valueOf(minutesList.get(i)) * 60000) + (Integer.valueOf(secondsList.get(i)) * 1000);
+        }
+        getFragmentManager().beginTransaction().remove(roundInputFragment);
+        TimerFragment timerFragment = new TimerFragment();
+        getFragmentManager().beginTransaction().add(R.id.fragment_view, timerFragment).commit();
     }
 }
