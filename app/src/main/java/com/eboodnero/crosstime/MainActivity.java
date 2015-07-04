@@ -18,8 +18,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AddRoundDialog.OnFragmentInteractionListener, TimeInput.OnFragmentInteractionListener {
     Toolbar toolbar;
-    FragmentManager fragmentManager;
-    RoundInputFragment roundInputFragment;
+    static FragmentManager fragmentManager;
+    static RoundInputFragment roundInputFragment;
+    static TimerFragment timerFragment;
     static List<String> hoursList;
     static List<String> minutesList;
     static List<String> secondsList;
@@ -38,14 +39,18 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
+        //set arraylists for the hours,minutes,seconds of the rounds. also whether the round is a rest or not, as well as the number of the rounds.
         hoursList = new ArrayList<>();
         minutesList = new ArrayList<>();
         secondsList = new ArrayList<>();
         isRoundList = new ArrayList<>();
         roundNumberList = new ArrayList<>();
+        fragmentManager = getFragmentManager();
+
+        timerFragment = new TimerFragment();
 
         roundInputFragment = new RoundInputFragment();
-        getFragmentManager().beginTransaction().add(R.id.fragment_view, roundInputFragment).commit();
+        getFragmentManager().beginTransaction().add(R.id.fragment_container, roundInputFragment).commit();
 
 
     }
@@ -71,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
         }
         if(id == R.id.save_menu_item){
             startTimer();
-            item.setVisible(false);
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -82,22 +87,22 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
     }
 
     public void addRoundPressed() {
-        fragmentManager = getFragmentManager();
+
         DialogFragment timeInput = new TimeInput();
         timeInput.show(fragmentManager, "timeInput");
         roundButtonPressedBuffer = true;
     }
 
     public void addRestPressed() {
-        fragmentManager = getFragmentManager();
+
         DialogFragment timeInput = new TimeInput();
         timeInput.show(fragmentManager, "timeInput");
         roundButtonPressedBuffer = false;
     }
 
     public void onSaveTimeInput(){
-        fragmentManager = getFragmentManager();
-        RoundInputFragment workOutFragment = (RoundInputFragment) fragmentManager.findFragmentById(R.id.fragment_view);
+
+        RoundInputFragment workOutFragment = (RoundInputFragment) fragmentManager.findFragmentById(R.id.fragment_container);
         workOutFragment.updateList();
 
     }
@@ -116,12 +121,13 @@ public class MainActivity extends AppCompatActivity implements AddRoundDialog.On
     }
 
     public void startTimer(){
+        //create an array with a size equal to the amount of rounds.
         roundsTimeToMilliSecondsArray = new int[isRoundList.size()];
+
+        //convert items in the hours,minutes,seconds arraylists to milliseconds, add them up, and put it in a roundsTimeToMilliSecondsArray index
         for (int i = 0; i < isRoundList.size(); i++){
             roundsTimeToMilliSecondsArray[i] = (Integer.valueOf(hoursList.get(i)) * 3600000) + (Integer.valueOf(minutesList.get(i)) * 60000) + (Integer.valueOf(secondsList.get(i)) * 1000);
         }
-        getFragmentManager().beginTransaction().remove(roundInputFragment);
-        TimerFragment timerFragment = new TimerFragment();
-        getFragmentManager().beginTransaction().add(R.id.fragment_view, timerFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, timerFragment, "fragmentContainer").addToBackStack(null).commit();
     }
 }

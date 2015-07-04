@@ -58,14 +58,6 @@
             />
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/round"
-        android:layout_below="@id/timer_round_linear_layout"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"
-        />
     <LinearLayout
         android:id="@+id/start_and_stop_linear_layout"
         android:layout_width="match_parent"
@@ -74,6 +66,7 @@
         android:layout_alignParentBottom="true"
         >
         <Button
+            android:id="@+id/timer_start_button"
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:layout_weight="1"
@@ -81,6 +74,7 @@
             android:textColor="@color/textIconColor"
             android:background="@color/accentColor"/>
         <Button
+            android:id="@+id/timer_stop_button"
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:layout_weight="1"

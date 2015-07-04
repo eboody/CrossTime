@@ -23,7 +23,6 @@ import android.widget.Toast;
  */
 public class RoundInputFragment extends Fragment {
     View parentView;
-    FragmentManager fragmentManager;
     Button addButton;
     Context context;
     ListView listView;
@@ -64,8 +63,6 @@ public class RoundInputFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Animation scale = AnimationUtils.loadAnimation(context, R.anim.scale);
-                addButton.startAnimation(scale);
                 showAddRoundDialog();
             }
         });
@@ -75,9 +72,8 @@ public class RoundInputFragment extends Fragment {
     }
 
     public void showAddRoundDialog() {
-        fragmentManager = getFragmentManager();
         DialogFragment addRound = new AddRoundDialog();
-        addRound.show(fragmentManager, null);
+        addRound.show(MainActivity.fragmentManager, null);
 
     }
 
@@ -86,8 +82,8 @@ public class RoundInputFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        final Animation translate = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_from_side);
-        addButton.startAnimation(translate);
+        final Animation scale = AnimationUtils.loadAnimation(getActivity(), R.anim.scale);
+        addButton.startAnimation(scale);
         updateList();
     }
     public void updateList(){
