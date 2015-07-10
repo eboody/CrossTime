@@ -27,6 +27,8 @@ public class TimerFragment extends Fragment {
     CountDownTimer countDownTimer;
     Animation rotateAnimation;
 
+    final String FORMAT = "%02d:%02d:%02d";
+
     public TimerFragment() {
         // Required empty public constructor
     }
@@ -62,7 +64,9 @@ public class TimerFragment extends Fragment {
             public void onClick(View v) {
                 stopButton.setVisibility(View.VISIBLE);
                 startButton.setText("Pause");
-                startTimer(Integer.valueOf(MainActivity.hoursList.get(0)), Integer.valueOf(MainActivity.minutesList.get(0)), Integer.valueOf(MainActivity.secondsList.get(0)), 1);
+                CountDownTimer[] countDownTimers = initializeTimers();
+
+                startTimers(countDownTimers);
             }
         });
 
@@ -70,31 +74,33 @@ public class TimerFragment extends Fragment {
         return v;
     }
 
-    public void startTimer(int hours, int minutes, int seconds, final int roundNumer) {
-        final String FORMAT = "%02d:%02d:%02d";
-        currentRoundView.setText("" + roundNumer);
-
-
-        countDownTimer = new CountDownTimer(hours * 3600000 + minutes * 60000 + seconds * 1000, 1000) { // adjust the milli seconds here
-            public void onTick(long millisUntilFinished) {
-                timerView.setText("" + String.format(FORMAT,
-                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
-                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
-                                TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
-                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
-                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
-
-            }
-
-            public void onFinish() {
-                if(roundNumer < MainActivity.isRoundList.size()){
-                    startTimer(Integer.valueOf(MainActivity.hoursList.get(roundNumer)), Integer.valueOf(MainActivity.minutesList.get(roundNumer)), Integer.valueOf(MainActivity.secondsList.get(roundNumer)), roundNumer + 1);
-                }
-
-            }
-        }.start();
+    public void startTimers(CountDownTimer[] timers) {
 
     }
 
+    public CountDownTimer[] initializeTimers() {
+        final int roundNumer = 1;
+        final CountDownTimer[] timers = new CountDownTimer[MainActivity.isRoundList.size()];
+        for (int i = 0; i < MainActivity.isRoundList.size(); i++) {
+            timers[i] = new CountDownTimer(Integer.valueOf(MainActivity.hoursList.get(i)) * 3600000 + Integer.valueOf(MainActivity.minutesList.get(i)) * 60000 + Integer.valueOf(MainActivity.secondsList.get(i)) * 1000, 1000) { // adjust the milli seconds here
+                public void onTick(long millisUntilFinished) {
+                    timerView.setText("" + String.format(FORMAT,
+                            TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
+                            TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
+                                    TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                            TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
 
+                }
+
+                public void onFinish() {
+                    if (roundNumer < MainActivity.isRoundList.size()) {
+                        
+                    }
+
+                }
+            };
+        }
+        return timers;
+    }
 }
